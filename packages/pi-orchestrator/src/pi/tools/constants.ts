@@ -17,3 +17,5 @@ export const CANCELLATION_MESSAGE_GET_WORKFLOW_RUN_LOGS =
   'Workflow run logs retrieval was cancelled';
 export const CANCELLATION_MESSAGE_SUMMARIZE = 'Text summarization was cancelled';
 export const CANCELLATION_MESSAGE_DIAGNOSE_CI_FAILURE = 'CI failure diagnosis was cancelled';
+export const CANCELLATION_MESSAGE_DIAGNOSE_WORKFLOW_FAILURE =
+  'Workflow failure diagnosis was cancelled';

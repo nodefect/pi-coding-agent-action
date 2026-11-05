@@ -19,6 +19,8 @@
  * - **`summarize_text`** – summarizes very long text with a separate one-shot
  *   LLM call (via `ctx.modelRegistry`), keeping the raw text out of the
  *   agent's own context.
+ * - **`diagnose_workflow_failure`** – diagnoses a workflow failure from a workflow
+ *   run URL, retrieving logs and producing an LLM root-cause summary.
  *
  * The exported {@link toolsFactory} function is passed to the Pi SDK resource
  * loader so that the tools are available during agent sessions.
@@ -33,6 +35,7 @@ import { getCIStatusToolFactory } from './get-ci-status';
 import { getWorkflowRunLogsToolFactory } from './get-workflow-run-logs';
 import { createSummarizeToolFactory } from './summarize';
 import { diagnoseCIFailureToolFactory } from './diagnose-ci-failure';
+import { diagnoseWorkflowFailureToolFactory } from './diagnose-workflow-failure';
 import type { ExtensionAPI } from '@earendil-works/pi-coding-agent';
 import type { PlatformProvider } from '../../platform';
 import type { DiffConfig } from '../../types';
@@ -76,6 +79,9 @@ export function createToolsFactory(
       // Platform-agnostic composite: chains get_ci_status →
       // get_workflow_run_logs → summarize_text via ctx.executeTool().
       diagnoseCIFailureToolFactory(),
+      // Platform-agnostic composite: parses workflow run URL →
+      // get_workflow_run_logs → summarize_text via ctx.executeTool().
+      diagnoseWorkflowFailureToolFactory(),
     ];
     tools.forEach(tool => {
       pi.registerTool(tool);

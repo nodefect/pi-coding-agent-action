@@ -220,6 +220,21 @@ export const diagnoseOutputSchema = Type.Object(
   { additionalProperties: false }
 );
 
+/** `outputSchema` for diagnose_workflow_failure — mirrors `DiagnoseWorkflowFailureDetails`. */
+export const diagnoseWorkflowOutputSchema = Type.Object(
+  {
+    run_url: Type.String(),
+    run_id: Type.Optional(Type.Number()),
+    owner: Type.Optional(Type.String()),
+    repo: Type.Optional(Type.String()),
+    summarized: Type.Boolean(),
+    summary: Type.String(),
+    error: Type.Optional(Type.String()),
+    cancelled: Type.Optional(Type.Boolean()),
+  },
+  { additionalProperties: false }
+);
+
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------

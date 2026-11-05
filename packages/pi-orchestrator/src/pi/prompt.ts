@@ -447,3 +447,34 @@ export const DIAGNOSE_CI_FAILURE_PARAM_FOCUS_DESCRIPTION =
 
 export const DIAGNOSE_CI_FAILURE_PARAM_MAX_WORDS_DESCRIPTION =
   'Approximate maximum length of the failure summary in words. Defaults to 300.';
+
+//
+// Diagnose Workflow Failure
+//
+export const DIAGNOSE_WORKFLOW_FAILURE_PROMPT_SNIPPET =
+  'Diagnose a GitHub Actions workflow run failure from its URL: parses the run ID, fetches the job logs, and returns an LLM-summarized root-cause analysis.';
+
+export const DIAGNOSE_WORKFLOW_FAILURE_PROMPT_GUIDELINES = [
+  'Use diagnose_workflow_failure when you have a GitHub workflow run URL and want to investigate its failure in a single call.',
+  'Pass the workflow run URL via `run_url` (e.g. "https://github.com/owner/repo/actions/runs/12345678").',
+  'Owner and repo are automatically parsed from the URL if not explicitly provided.',
+  'Use `focus` to steer the analysis (e.g. "the failing test names and assertions"). Use `max_words` to bound the summary length.',
+];
+
+export const DIAGNOSE_WORKFLOW_FAILURE_DESCRIPTION =
+  'Diagnose a GitHub Actions workflow failure from a workflow run URL in a single call. Parses the run ID and repository from the URL, retrieves the job logs via get_workflow_run_logs, and returns a concise root-cause summary produced by a separate LLM sub-call.';
+
+export const DIAGNOSE_WORKFLOW_FAILURE_PARAM_RUN_URL_DESCRIPTION =
+  'GitHub Actions workflow run URL (e.g., "https://github.com/owner/repo/actions/runs/12345678" or ".../actions/runs/12345678/job/987654321").';
+
+export const DIAGNOSE_WORKFLOW_FAILURE_PARAM_OWNER_DESCRIPTION =
+  'Repository owner (e.g., "octocat"). If not provided, parsed from the workflow run URL or context.';
+
+export const DIAGNOSE_WORKFLOW_FAILURE_PARAM_REPO_DESCRIPTION =
+  'Repository name (e.g., "hello-world"). If not provided, parsed from the workflow run URL or context.';
+
+export const DIAGNOSE_WORKFLOW_FAILURE_PARAM_FOCUS_DESCRIPTION =
+  'Optional instruction for what the failure analysis should focus on (e.g. "the failing test names and their assertions").';
+
+export const DIAGNOSE_WORKFLOW_FAILURE_PARAM_MAX_WORDS_DESCRIPTION =
+  'Approximate maximum length of the failure summary in words. Defaults to 300.';
